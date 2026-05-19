@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Entry Point</title>
+  
+  <link rel="manifest" href="./manifest.json" />
+  
+  <script>
+    // 1. Register the Service Worker for offline support
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('Service Worker registered!', reg))
+          .catch(err => console.error('Registration failed', err));
+      });
+    }
+
+    // 2. Automatically redirect and open your guide.html file
+    window.location.href = "./guide.html";
+  </script>
+</head>
+<body>
+  <p>Loading the guide...</p>
+  <p>If you are not redirected, <a href="./guide.html">click here</a>.</p>
+</body>
+</html>
